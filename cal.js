@@ -50,6 +50,7 @@ function main() {
 
 			$('#calendar').fullCalendar({
 				events: events,
+				defaultView: getParameterByName("view") ? getParameterByName("view") : "month",
 				header: {
 				    left:   'title',
 				    center: 'month,agendaWeek,agendaDay,listMonth',
