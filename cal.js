@@ -9,15 +9,20 @@ function main() {
 	var url = getParameterByName("iCalURL");
 	if ( !url ) {
 		$('#calendar').html('<h1>Please put a PagerDuty iCal URL in the iCalURL parameter</h1>');
+		return;
 	}
-	
+	$('.busy').show();
 	url = "https://cors-anywhere.herokuapp.com/" + url;
 
 	$.ajax({
 		url: url,
 		type: "text",
 		method: "get",
+		headers: {
+			"Origin": "local"
+		},
 		success: function(data) {
+			$('.busy').hide();
 			var jcalData = ICAL.parse(data);
 			var comp = new ICAL.Component(jcalData);
 			var vevents = comp.getAllSubcomponents("vevent");
@@ -25,17 +30,21 @@ function main() {
 			vevents.forEach(function(vevent) {
 				var event = new ICAL.Event(vevent);
 				events.push({
-					title: event.summary,
+					title: event.summary.replace(/^On Call - /g, ''),
 					start: (new ICAL.Time(event.startDate)).toString(),
 					end: (new ICAL.Time(event.endDate)).toString(),
 				});
 			});
 			$('#calendar').fullCalendar({
-				events: events
+				events: events,
+				header: {
+				    left:   'title',
+				    center: 'month,agendaWeek,agendaDay,listMonth',
+				    right:  'today prev,next'
+				}
 			});
 		}
 	})
 }
-
 
 $(document).ready(main);
