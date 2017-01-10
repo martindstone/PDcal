@@ -7,7 +7,12 @@ function getParameterByName(name) {
 
 function main() {
 	var url = getParameterByName("iCalURL");
+	if ( !url ) {
+		$('#calendar').html('<h1>Please put a PagerDuty iCal URL in the iCalURL parameter</h1>');
+	}
 	
+	url = "https://cors-anywhere.herokuapp.com/" + url;
+
 	$.ajax({
 		url: url,
 		type: "text",
