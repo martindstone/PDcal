@@ -44,7 +44,7 @@ function main() {
 					start: (new ICAL.Time(event.startDate)).toString(),
 					end: (new ICAL.Time(event.endDate)).toString(),
 					color: peopleColors[title],
-					url: "javascript:window.open('" + event._firstProp("url") + "');"
+					url: event._firstProp("url")
 				});
 			});
 
