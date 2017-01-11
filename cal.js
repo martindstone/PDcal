@@ -44,7 +44,7 @@ function main() {
 					start: (new ICAL.Time(event.startDate)).toString(),
 					end: (new ICAL.Time(event.endDate)).toString(),
 					color: peopleColors[title],
-					url: event._firstProp("url")
+					weburl: event._firstProp("url")
 				});
 			});
 
@@ -55,6 +55,12 @@ function main() {
 				    left:   'title',
 				    center: 'month,agendaWeek,agendaDay,listMonth',
 				    right:  'today prev,next'
+				},
+				eventMouseover: function() {
+					$(this)[0].style.cursor = "pointer";
+				},
+				eventClick: function(calEvent) {
+					window.open(calEvent.weburl, "_blank");
 				}
 			});
 		}
