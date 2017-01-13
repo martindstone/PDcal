@@ -1,7 +1,6 @@
 javascript: (
 	function() {
 		$('ul.cal-options-menu').each(function() {
-			var div = $(this).parent().parent();
 			var ul = $(this);
 			$(this).find('li.just-my-cal-option > a').each(function() {
 				var icalurl = $(this).attr('href').replace(/\?.*$/, '');
