@@ -28,7 +28,9 @@ function main() {
 			var jcalData = ICAL.parse(data);
 			var comp = new ICAL.Component(jcalData);
 			
-			$('#calendar-title').html('<h1 style="background-color: #f0f0f0">' + comp.getFirstProperty("x-wr-calname").getFirstValue() + '</h1><br>');
+			var calName = comp.getFirstProperty("x-wr-calname").getFirstValue();
+			$('#calendar-title').html('<h1 style="background-color: #f0f0f0">' + calName + '</h1><br>');
+			document.title = calName;
 			
 			var vevents = comp.getAllSubcomponents("vevent");
 			var events = [];
