@@ -38,6 +38,7 @@ function main() {
 			vevents.forEach(function(vevent) {
 				var event = new ICAL.Event(vevent);
 				var title = event.summary.replace(/^On Call - /g, '');
+				title = title.replace(/ - .*$/, '');
 				if ( ! peopleColors[title] ) {
 					peopleColors[title] = colors[Math.floor(Math.random() * colors.length)];
 				}
