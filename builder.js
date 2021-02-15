@@ -130,7 +130,7 @@ function main() {
 					$(':checked').each(function() {
 						urls.push($(this).val());
 					});
-					var PDcalURL = 'http://pagerduty.github.io/addons/PDcal/index.html?iCalURL=' + urls.join('&iCalURL=');
+					var PDcalURL = 'http://martindstone.github.io/PDcal/index.html?iCalURL=' + urls.join('&iCalURL=');
 					$('#calendar-url').html('<h1>PDcal URL for ' + urls.length + ' schedules:</h1><pre><a target="_blank" href="' + PDcalURL + '">' + PDcalURL + '</a></pre>');
 				}
 			});

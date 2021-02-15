@@ -44,7 +44,7 @@ function main() {
 	urls.forEach(function(url, index) {
 		
 		outstanding_requests++;
-		url = "https://cors-anywhere.herokuapp.com/" + url;
+		url = `https://salty-coast-73995.herokuapp.com/${url}`
 	
 		$.ajax({
 			url: url,
